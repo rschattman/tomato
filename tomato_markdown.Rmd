@@ -1,0 +1,61 @@
+---
+title: "Tomato nutrient study correlations"
+author: "Rachel Schattman and Becky Maden"
+date: "November 7, 2018"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load library
+```{r}
+library(dplyr)
+```
+
+## Start script
+
+
+```{r}
+script_path <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018"
+in_dir <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018"
+out_dir <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/output"
+data <- data.frame(read.csv("C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/TomatoHT_Data_CHARTS_10.31.18_nutrientlevels.csv"))
+```
+
+## Create dataframe w/variables of interest, omit rows with NA
+
+```{r}
+
+tomatofun_nitrate <- subset(data, select = c("Nitrate.N..ppm..SME", "Nitrate.N..ppm..MM", "TN.....Leaf.Analysis"))
+tomatofun_nitrateNONA <- na.omit(tomatofun_nitrate) 
+
+```
+## Check distribution - all are non normal
+```{r}
+shapiro.test(tomatofun_nitrateNONA$Nitrate.N..ppm..SME)
+shapiro.test(tomatofun_nitrateNONA$Nitrate.N..ppm..MM)
+shapiro.test(tomatofun_nitrateNONA$TN.....Leaf.Analysis)
+```
+## Correlation tests
+
+```{r}
+
+cor(tomatofun_nitrateNONA, method = "spearman")
+
+cor.test(x = tomatofun_nitrateNONA$Nitrate.N..ppm..SME, y = tomatofun_nitrateNONA$Nitrate.N..ppm..MM, alternative = "two.sided", method = "spearman", exact = NULL)
+cor.test(x = tomatofun_nitrateNONA$Nitrate.N..ppm..SME, y = tomatofun_nitrateNONA$TN.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
+cor.test(x = tomatofun_nitrateNONA$Nitrate.N..ppm..MM, y = tomatofun_nitrateNONA$TN.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
+
+```
+## plot SME and MM correlations
+```{r}
+
+plot(tomatofun_nitrateNONA$Nitrate.N..ppm..SME, tomatofun_nitrateNONA$Nitrate.N..ppm..MM, type = "p", main = "Nitrate SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
+abline(lm(tomatofun_nitrateNONA$Nitrate.N..ppm..SME~tomatofun_nitrateNONA$Nitrate.N..ppm..MM), col = "red") # regression line
+```
+## plot MM and TN correlations
+```{r}
+plot(tomatofun_nitrateNONA$Nitrate.N..ppm..MM, tomatofun_nitrateNONA$TN.....Leaf.Analysis, type = "p", main = "Nitrate MM and TN Leaf, p < 0.05", xlab = "MM PPM", ylab = "TN leaf")
+abline(lm(tomatofun_nitrateNONA$Nitrate.N..ppm..MM~tomatofun_nitrateNONA$TN.....Leaf.Analysis), col = "red") # regression line
