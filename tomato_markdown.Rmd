@@ -21,10 +21,12 @@ library(dplyr)
 script_path <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018"
 in_dir <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018"
 out_dir <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/output"
-data <- data.frame(read.csv("C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/TomatoHT_Data_CHARTS_10.31.18_nutrientlevels.csv"))
+data <- data.frame(read.csv("C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/Nutrient_levels_NH_VT_MA_11_14_18.csv"))
 ```
 
-## Create dataframe w/variables of interest, omit rows with NA
+# Nitrate
+## Create dataframe w/variables of interest for Nitrate only, omit rows with NA
+
 
 ```{r}
 
@@ -32,7 +34,9 @@ tomatofun_nitrate <- subset(data, select = c("Nitrate.N..ppm..SME", "Nitrate.N..
 tomatofun_nitrateNONA <- na.omit(tomatofun_nitrate) 
 
 ```
+
 ## Check distribution - all are non normal
+
 ```{r}
 shapiro.test(tomatofun_nitrateNONA$Nitrate.N..ppm..SME)
 shapiro.test(tomatofun_nitrateNONA$Nitrate.N..ppm..MM)
@@ -55,7 +59,91 @@ cor.test(x = tomatofun_nitrateNONA$Nitrate.N..ppm..MM, y = tomatofun_nitrateNONA
 plot(tomatofun_nitrateNONA$Nitrate.N..ppm..SME, tomatofun_nitrateNONA$Nitrate.N..ppm..MM, type = "p", main = "Nitrate SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
 abline(lm(tomatofun_nitrateNONA$Nitrate.N..ppm..SME~tomatofun_nitrateNONA$Nitrate.N..ppm..MM), col = "red") # regression line
 ```
-## plot MM and TN correlations
+# Phosphorus
+## Create dataframe w/variables of interest for P only, omit rows with NA
+
 ```{r}
-plot(tomatofun_nitrateNONA$Nitrate.N..ppm..MM, tomatofun_nitrateNONA$TN.....Leaf.Analysis, type = "p", main = "Nitrate MM and TN Leaf, p < 0.05", xlab = "MM PPM", ylab = "TN leaf")
-abline(lm(tomatofun_nitrateNONA$Nitrate.N..ppm..MM~tomatofun_nitrateNONA$TN.....Leaf.Analysis), col = "red") # regression line
+tomatofun_P <- subset(data, select = c("Phosphorus..ppm..SME", "Phosphorus..lb.Ac..MM", "P.....Leaf.Analysis"))
+tomatofun_P_NONA <- na.omit(tomatofun_P) 
+
+```
+
+## Check distribution 
+
+```{r}
+shapiro.test(tomatofun_P_NONA$Phosphorus..ppm..SME)
+shapiro.test(tomatofun_P_NONA$Phosphorus..lb.Ac..MM)
+shapiro.test(tomatofun_P_NONA$P.....Leaf.Analysis)
+```
+
+## Correlation tests
+
+```{r}
+
+cor(tomatofun_P_NONA, method = "spearman")
+
+cor.test(x = tomatofun_P_NONA$Phosphorus..ppm..SME, y = tomatofun_P_NONA$Phosphorus..lb.Ac..MM, alternative = "two.sided", method = "spearman", exact = NULL)
+cor.test(x = tomatofun_P_NONA$Phosphorus..ppm..SME, y = tomatofun_P_NONA$P.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
+cor.test(x = tomatofun_P_NONA$Phosphorus..lb.Ac..MM, y = tomatofun_P_NONA$P.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
+
+```
+
+## plot SME and MM correlations
+```{r}
+
+plot(tomatofun_P_NONA$Phosphorus..ppm..SME, tomatofun_P_NONA$Phosphorus..lb.Ac..MM, type = "p", main = "Phosphorus SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
+abline(lm(tomatofun_P_NONA$Phosphorus..ppm..SME~tomatofun_P_NONA$Phosphorus..lb.Ac..MM), col = "red") # regression line
+```
+
+# Potassium
+## Create dataframe w/variables of interest for P only, omit rows with NA
+head(data)
+
+```{r}
+tomatofun_K <- subset(data, select = c("Potassium..ppm..SME", "Potassium..lb.Ac..MM", "K.....Leaf.Analysis"))
+tomatofun_K_NONA <- na.omit(tomatofun_K) 
+
+```
+
+## Check distribution 
+
+```{r}
+shapiro.test(tomatofun_K_NONA$Potassium..ppm..SME)
+shapiro.test(tomatofun_K_NONA$Potassium..lb.Ac..MM)
+shapiro.test(tomatofun_K_NONA$K.....Leaf.Analysis)
+```
+
+```{r}
+
+cor(tomatofun_K_NONA, method = "spearman")
+
+cor.test(x = tomatofun_K_NONA$Potassium..ppm..SME, y = tomatofun_K_NONA$Potassium..lb.Ac..MM, alternative = "two.sided", method = "spearman", exact = NULL)
+cor.test(x = tomatofun_K_NONA$Potassium..ppm..SME, y = tomatofun_K_NONA$K.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
+cor.test(x = tomatofun_K_NONA$Potassium..lb.Ac..MM, y = tomatofun_K_NONA$K.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
+
+```
+
+## plot SME and MM correlations
+```{r}
+
+plot(tomatofun_K_NONA$Potassium..ppm..SME, tomatofun_K_NONA$Potassium..lb.Ac..MM, type = "p", main = "Potassium SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
+abline(lm(tomatofun_K_NONA$Potassium..ppm..SME~tomatofun_K_NONA$Potassium..lb.Ac..MM), col = "red") # regression line
+```
+
+# P SME and pH MM
+## Create dataframe w/variables of interest, omit rows with NA
+head(data)
+```{r}
+tomatofun_P_pH <- subset(data, select = c("Phosphorus..ppm..SME", "Soil.pH"))
+tomatofun_P_pH_NONA <- na.omit(tomatofun_P_pH) 
+```
+
+```{r}
+
+cor(tomatofun_P_pH_NONA, method = "spearman")
+
+cor.test(x = tomatofun_P_pH_NONA$Phosphorus..ppm..SME, y = tomatofun_P_pH_NONA$Soil.pH, alternative = "two.sided", method = "spearman", exact = NULL)
+
+plot(tomatofun_P_pH_NONA$Phosphorus..ppm..SME, tomatofun_P_pH_NONA$Soil.pH, type = "p", main = "Phosphorus SME and pH, p < 0.001", xlab = "SME PPM", ylab = "pH")
+abline(lm(tomatofun_P_pH_NONA$Phosphorus..ppm..SME~tomatofun_P_pH_NONA$Soil.pH), col = "red") # regression line
+```
