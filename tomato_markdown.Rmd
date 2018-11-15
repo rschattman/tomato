@@ -91,8 +91,8 @@ cor.test(x = tomatofun_P_NONA$Phosphorus..lb.Ac..MM, y = tomatofun_P_NONA$P.....
 ## plot SME and MM correlations
 ```{r}
 
-plot(tomatofun_P_NONA$Phosphorus..ppm..SME, tomatofun_P_NONA$Phosphorus..lb.Ac..MM, type = "p", main = "Phosphorus SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
-abline(lm(tomatofun_P_NONA$Phosphorus..ppm..SME~tomatofun_P_NONA$Phosphorus..lb.Ac..MM), col = "red") # regression line
+plot(tomatofun_P_NONA$Phosphorus..ppm..SME, tomatofun_P_NONA$Phosphorus..lb.Ac..MM, type = "p", main = "Phosphorus SME and MM, p < 0.001", xlab = "MM PPM", ylab = "SME PPM")
+abline(lm(tomatofun_P_NONA$Phosphorus..lb.Ac..MM~tomatofun_P_NONA$Phosphorus..ppm..SME), col = "red") # regression line
 ```
 
 # Potassium
@@ -126,8 +126,8 @@ cor.test(x = tomatofun_K_NONA$Potassium..lb.Ac..MM, y = tomatofun_K_NONA$K.....L
 ## plot SME and MM correlations
 ```{r}
 
-plot(tomatofun_K_NONA$Potassium..ppm..SME, tomatofun_K_NONA$Potassium..lb.Ac..MM, type = "p", main = "Potassium SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
-abline(lm(tomatofun_K_NONA$Potassium..ppm..SME~tomatofun_K_NONA$Potassium..lb.Ac..MM), col = "red") # regression line
+plot(tomatofun_K_NONA$Potassium..ppm..SME, tomatofun_K_NONA$Potassium..lb.Ac..MM, type = "p", main = "Potassium SME and MM, p < 0.001", xlab = "MM PPM", ylab = "SME PPM")
+abline(lm(tomatofun_K_NONA$Potassium..lb.Ac..MM~tomatofun_K_NONA$Potassium..ppm..SME), col = "red") # regression line
 ```
 
 # P SME and pH MM
