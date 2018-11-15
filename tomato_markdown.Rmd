@@ -144,6 +144,6 @@ cor(tomatofun_P_pH_NONA, method = "spearman")
 
 cor.test(x = tomatofun_P_pH_NONA$Phosphorus..ppm..SME, y = tomatofun_P_pH_NONA$Soil.pH, alternative = "two.sided", method = "spearman", exact = NULL)
 
-plot(tomatofun_P_pH_NONA$Phosphorus..ppm..SME, tomatofun_P_pH_NONA$Soil.pH, type = "p", main = "Phosphorus SME and pH, p < 0.001", xlab = "SME PPM", ylab = "pH")
-abline(lm(tomatofun_P_pH_NONA$Phosphorus..ppm..SME~tomatofun_P_pH_NONA$Soil.pH), col = "red") # regression line
+plot(tomatofun_P_pH_NONA$Phosphorus..ppm..SME, tomatofun_P_pH_NONA$Soil.pH, type = "p", main = "Phosphorus SME and pH, p < 0.001", xlab = "pH", ylab = "SME PPM")
+abline(lm(tomatofun_P_pH_NONA$Soil.pH~tomatofun_P_pH_NONA$Phosphorus..ppm..SME), col = "red") # regression line
 ```
