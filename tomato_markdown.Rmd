@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Load library
 ```{r}
 library(dplyr)
+library(ggpubr)
 ```
 
 ## Start script
@@ -21,7 +22,7 @@ library(dplyr)
 script_path <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018"
 in_dir <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018"
 out_dir <- "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/output"
-data <- data.frame(read.csv("C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/Nutrient_levels_NH_VT_MA_11_14_18.csv"))
+data <- data.frame(read.csv("C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/Nutrient_levels_yield_NH_VT_MA_11_14_18.csv"))
 ```
 
 # Nitrate
@@ -147,4 +148,73 @@ cor.test(x = tomatofun_P_pH_NONA$Phosphorus..ppm..SME, y = tomatofun_P_pH_NONA$S
 
 plot(tomatofun_P_pH_NONA$Phosphorus..ppm..SME, tomatofun_P_pH_NONA$Soil.pH, type = "p", main = "Phosphorus SME and pH, p < 0.001", xlab = "SME PPM", ylab = "pH")
 abline(lm(tomatofun_P_pH_NONA$Soil.pH~tomatofun_P_pH_NONA$Phosphorus..ppm..SME), col = "red") # regression line
+```
+
+Take home message: No significant difference between Nitrate levels (any test) by sample period. 
+```{r}
+
+tomatofun_yield_N <- subset(data, select = c("Total.Yield.per.sq.ft", "Sample.Period", "Nitrate.N..ppm..SME", "Nitrate.N..ppm..MM", "TN.....Leaf.Analysis"))
+
+tomatofun_yield_N_NONA <- na.omit(tomatofun_yield_N)
+
+#set comparisons for error plots
+my_comparisons <- list(c("Pre-Plant", "1-MAT"), c("Pre-Plant", "2-MAT"), c("Pre-Plant", "3-MAT"), c("Pre-Plant", "4-MAT"), c("Pre-Plant", "5-MAT"))
+my_comparisonsb <- list(c("1-MAT", "2-MAT"), c("1-MAT", "3-MAT"), c("1-MAT", "4-MAT"), c("1-MAT", "5-MAT"))
+
+#correct order of sample periods
+tomatofun_yield_N_NONA$"Sample.Period" <- factor(tomatofun_yield_N_NONA$"Sample.Period", levels = c('Pre-Plant', 
+                                                                                           '1-MAT', 
+                                                                                            '2-MAT', 
+                                                                                            '3-MAT', 
+                                                                                            '4-MAT', 
+                                                                                            '5-MAT'))
+
+ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period", 
+            y = "Nitrate.N..ppm..SME",
+            combine = FALSE, merge = TRUE,
+            desc_stat = "mean_ci",  
+            color = "black",
+            palette = "npg",
+            title = "Sampling period and SME nitrate",
+            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
+            ylim = c(-500, 1000),
+            legend = "bottom",
+            xlab = "sample period",
+            ylab = "SME Nitrate",
+            orientation = "vertical") + 
+            stat_compare_means(comparisons = my_comparisonsb) +
+            stat_compare_means(label.y = -250, label.x = )
+
+ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period", 
+            y = "Nitrate.N..ppm..MM",
+            combine = FALSE, merge = TRUE,
+            desc_stat = "mean_ci",  
+            color = "black",
+            palette = "npg",
+            title = "Sampling period and MM nitrate",
+            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
+            ylim = c(-500, 1000),
+            legend = "bottom",
+            xlab = "sample period",
+            ylab = "MM Nitrate",
+            orientation = "vertical") + 
+            stat_compare_means(comparisons = my_comparisonsb) +
+            stat_compare_means(label.y = -250, label.x = )
+
+ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period", 
+            y = "TN.....Leaf.Analysis",
+            combine = FALSE, merge = TRUE,
+            desc_stat = "mean_ci",  
+            color = "black",
+            palette = "npg",
+            title = "Sampling period and total N(leaf)",
+            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
+            ylim = c(-2, 8),
+            legend = "bottom",
+            xlab = "sample period",
+            ylab = "Total N",
+            orientation = "vertical") + 
+            stat_compare_means(comparisons = my_comparisonsb) +
+            stat_compare_means(label.y = -0, label.x = )
+
 ```
