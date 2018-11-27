@@ -1,7 +1,7 @@
 ---
 title: "Tomato nutrient study correlations"
 author: "Rachel Schattman and Becky Maden"
-date: "November 7, 2018"
+date: "November 27, 2018"
 output: word_document
 ---
 
@@ -341,7 +341,5 @@ M5 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA
 gvlma::gvlma(M5)
 summary(M5) #model is significant, however the only coefficient that is sig is the Ph.MM measure (not any sampling period)
 
-M6 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA$"TP.....Leaf.Analysis" + tomatofun_yield_P_NONA$"Sample.Period", data = tomatofun_yield_P_NONA, method = "qr")
-gvlma::gvlma(M6)
-summary(M6)
+
 ```
