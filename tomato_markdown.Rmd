@@ -13,6 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(dplyr)
 library(ggpubr)
+library(ggplot2)
+library(car)
+library(gvlma)
 ```
 
 ## Start script
@@ -150,7 +153,7 @@ plot(tomatofun_P_pH_NONA$Phosphorus..ppm..SME, tomatofun_P_pH_NONA$Soil.pH, type
 abline(lm(tomatofun_P_pH_NONA$Soil.pH~tomatofun_P_pH_NONA$Phosphorus..ppm..SME), col = "red") # regression line
 ```
 
-Take home message: No significant difference between Nitrate levels (any test) by sample period. 
+# Take home message: No significant difference between Nitrate levels (any test) by sample period. 
 ```{r}
 
 tomatofun_yield_N <- subset(data, select = c("Total.Yield.per.sq.ft", "Sample.Period", "Nitrate.N..ppm..SME", "Nitrate.N..ppm..MM", "TN.....Leaf.Analysis"))
@@ -217,4 +220,128 @@ ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period",
             stat_compare_means(comparisons = my_comparisonsb) +
             stat_compare_means(label.y = -0, label.x = )
 
+```
+
+## Linear multiple regression models for all measures of N
+# take away message: no models are significant. In otherwords, there is no evidence that testing N at a 
+# particular MAT has any relationship to yeild.
+```{r, echo = TRUE}
+as.factor(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft")
+as.factor(tomatofun_yield_N_NONA$"Sample.Period")
+as.factor(tomatofun_yield_N_NONA$"Nitrate.N..ppm..SME")
+as.factor(tomatofun_yield_N_NONA$"Nitrate.N..ppm..MM")
+as.factor(tomatofun_yield_N_NONA$"TN.....Leaf.Analysis")
+```
+
+```{r}
+#run model
+M1 <- lm(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_N_NONA$"Nitrate.N..ppm..SME" + tomatofun_yield_N_NONA$"Sample.Period", data = tomatofun_yield_N_NONA, method = "qr")
+
+#check assumptions
+mean(M1$residuals)        #Mean is <1, which is good.
+plot(M1)                  #Residuals vs fitted indicate homoscedasticity. Will need to rerun model. Points are normally distributed.
+acf(M1$residuals)         #No autocorrelation of residuals.
+lmtest::dwtest(M1)        #No autocorrelation of residuals.
+cor.test(tomatofun_yield_N_NONA$Nitrate.N..ppm..SME, M1$residuals)   #X variables and residuals are not correlated.
+var(tomatofun_yield_N_NONA$Nitrate.N..ppm..SME)   #Variability is positive.
+vif(M1)                   #Low GIF (<4) means low chance of multi-collinearity. 
+gvlma::gvlma(M1)          #Shortcut for checking assumptions. 
+summary(M1)
+
+# if the model had been successful, I would take the time to remove the outliers and re-run, but since the model is not 
+# significant, I think it would be a waste of time.
+
+M2 <- lm(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_N_NONA$"Nitrate.N..ppm..MM" + tomatofun_yield_N_NONA$"Sample.Period", data = tomatofun_yield_N_NONA, method = "qr")
+gvlma::gvlma(M2)
+summary(M2)
+
+M3 <- lm(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_N_NONA$TN.....Leaf.Analysis + tomatofun_yield_N_NONA$"Sample.Period", data = tomatofun_yield_N_NONA, method = "qr")
+gvlma::gvlma(M3)
+summary(M3)
+
+```
+head(data)
+# P
+```{r}
+tomatofun_yield_P <- subset(data, select = c("Total.Yield.per.sq.ft", "Sample.Period", "Phosphorus..ppm..SME", "Phosphorus..lb.Ac..MM", "P.....Leaf.Analysis"))
+
+tomatofun_yield_P_NONA <- na.omit(tomatofun_yield_P)
+
+#set comparisons for error plots
+my_comparisons <- list(c("Pre-Plant", "1-MAT"), c("Pre-Plant", "2-MAT"), c("Pre-Plant", "3-MAT"), c("Pre-Plant", "4-MAT"), c("Pre-Plant", "5-MAT"))
+my_comparisonsb <- list(c("1-MAT", "2-MAT"), c("1-MAT", "3-MAT"), c("1-MAT", "4-MAT"), c("1-MAT", "5-MAT"))
+
+#correct order of sample periods
+tomatofun_yield_P_NONA$"Sample.Period" <- factor(tomatofun_yield_P_NONA$"Sample.Period", levels = c('Pre-Plant', 
+                                                                                           '1-MAT', 
+                                                                                            '2-MAT', 
+                                                                                            '3-MAT', 
+                                                                                            '4-MAT', 
+                                                                                            '5-MAT'))
+
+ggerrorplot(tomatofun_yield_P_NONA, x = "Sample.Period", 
+            y = "Phosphorus..ppm..SME",
+            combine = FALSE, merge = TRUE,
+            desc_stat = "mean_ci",  
+            color = "black",
+            palette = "npg",
+            title = "Sampling period and SME phosphorus",
+            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
+            ylim = c(-5, 19),
+            legend = "bottom",
+            xlab = "sample period",
+            ylab = "SME Phospohorus",
+            orientation = "vertical") + 
+            stat_compare_means(comparisons = my_comparisonsb) +
+            stat_compare_means(label.y = -5, label.x = )
+
+ggerrorplot(tomatofun_yield_P_NONA, x = "Sample.Period", 
+            y = "Phosphorus..lb.Ac..MM",
+            combine = FALSE, merge = TRUE,
+            desc_stat = "mean_ci",  
+            color = "black",
+            palette = "npg",
+            title = "Sampling period and MM phosphorus",
+            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
+            ylim = c(-1000, 2000),
+            legend = "bottom",
+            xlab = "sample period",
+            ylab = "MM Phosphorus",
+            orientation = "vertical") + 
+            stat_compare_means(comparisons = my_comparisonsb) +
+            stat_compare_means(label.y = -1000, label.x = )
+
+ggerrorplot(tomatofun_yield_P_NONA, x = "Sample.Period", 
+            y = "P.....Leaf.Analysis",
+            combine = FALSE, merge = TRUE,
+            desc_stat = "mean_ci",  
+            color = "black",
+            palette = "npg",
+            title = "Sampling period and total P(leaf)",
+            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
+            ylim = c(-.25, 1),
+            legend = "bottom",
+            xlab = "sample period",
+            ylab = "Total P",
+            orientation = "vertical") + 
+            stat_compare_means(comparisons = my_comparisonsb) +
+            stat_compare_means(label.y = -.2, label.x = )
+```
+## Linear multiple regression models for all measures of P
+# take away message: no models are significant. In otherwords, there is no evidence that testing P at a 
+# particular MAT has any relationship to yeild.
+
+```{r}
+
+M4 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA$"Phosphorus..ppm..SME" + tomatofun_yield_P_NONA$"Sample.Period", data = tomatofun_yield_P_NONA, method = "qr")
+gvlma::gvlma(M4)
+summary(M2)
+
+M5 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA$"Phosphorus..lb.Ac..MM" + tomatofun_yield_P_NONA$"Sample.Period", data = tomatofun_yield_P_NONA, method = "qr")
+gvlma::gvlma(M5)
+summary(M5) #model is significant, however the only coefficient that is sig is the Ph.MM measure (not any sampling period)
+
+M6 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA$"TP.....Leaf.Analysis" + tomatofun_yield_P_NONA$"Sample.Period", data = tomatofun_yield_P_NONA, method = "qr")
+gvlma::gvlma(M6)
+summary(M6)
 ```
