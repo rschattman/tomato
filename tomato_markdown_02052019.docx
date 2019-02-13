@@ -1,0 +1,19 @@
+---
+title: "tomato_markdown_2"
+author: "Rachel Schattman"
+date: "February 5, 2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load library
+```{r}
+library(dplyr)
+library(ggpubr)
+library(ggplot2)
+library(car)
+library(gvlma)
+```
