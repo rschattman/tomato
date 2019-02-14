@@ -1,8 +1,10 @@
 ---
 title: "Tomato nutrient study correlations, 2nd version"
-author: "Rachel Schattman and Becky Maden"
+author: "Rachel Schattman"
 date: "November 27, 2018"
-output: word_document
+output:
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -58,69 +60,69 @@ NUTS2 <- merge(NUTS, NUTLEVELS)
 ## Test variables for normal distribution
 ### Note to self: figure out this whole batch processing business. 
 ```{r}
-shapiro.test(M1_M2$TMY)   #not normal
-shapiro.test(M1_M2$MYsqFT)#not normal
-shapiro.test(M1_M2$NSME)  #not normal
-shapiro.test(M1_M2$ASME)  #not normal
-shapiro.test(M1_M2$PSME)  #not normal
-shapiro.test(M1_M2$KSME)  #not normal
-shapiro.test(M1_M2$MagSME)  #NORMAL DIST
-shapiro.test(M1_M2$CaSME) #not normal
-shapiro.test(M1_M2$AlSME) #not normal
-shapiro.test(M1_M2$BoSME) #not normal
-shapiro.test(M1_M2$CoSME) #not normal
-shapiro.test(M1_M2$FeSME)   #NORMAL DIST
+#shapiro.test(NUTLEVELS$TMY)   #not normal
+#shapiro.test(NUTLEVELS$MYsqFT)#not normal
+#shapiro.test(NUTLEVELS$NSME)  #not normal
+#shapiro.test(NUTLEVELS$ASME)  #not normal
+#shapiro.test(NUTLEVELS$PSME)  #not normal
+#shapiro.test(NUTLEVELS$KSME)  #not normal
+#shapiro.test(NUTLEVELS$MagSME)  #NORMAL DIST
+#shapiro.test(NUTLEVELS$CaSME) #not normal
+#shapiro.test(NUTLEVELS$AlSME) #not normal
+#shapiro.test(NUTLEVELS$BoSME) #not normal
+#shapiro.test(NUTLEVELS$CoSME) #not normal
+#shapiro.test(NUTLEVELS$FeSME)   #NORMAL DIST
 
-M1_M2$MangSME <- as.numeric(M1_M2$MangSME) #transform into numberic
-shapiro.test(M1_M2$MangSME) #NORMAL DIST
+#NUTLEVELS$MangSME <- as.numeric(NUTLEVELS$MangSME) #transform into numberic
+#shapiro.test(NUTLEVELS$MangSME) #NORMAL DIST
 
-shapiro.test(M1_M2$SoSME) #not normal
-shapiro.test(M1_M2$SuSME) #not normal
-shapiro.test(M1_M2$ZSME)  #not normal
-shapiro.test(M1_M2$NMM)   #not normal
-shapiro.test(M1_M2$PMM)   #not normal
-shapiro.test(M1_M2$KMM)     #NORMAL DIST
-shapiro.test(M1_M2$CaMM)    #NORMAL DIST
-shapiro.test(M1_M2$MaMM)  #not normal
-shapiro.test(M1_M2$SuMM)  #not normal
-shapiro.test(M1_M2$BoMM)  #not normal
-shapiro.test(M1_M2$CoMM)  #not normal
-shapiro.test(M1_M2$FeMM)    #NORMAL DIST
-shapiro.test(M1_M2$MangMM)#not normal
-shapiro.test(M1_M2$ZMM)   #not normal
+#shapiro.test(NUTLEVELS$SoSME) #not normal
+#shapiro.test(NUTLEVELS$SuSME) #not normal
+#shapiro.test(NUTLEVELS$ZSME)  #not normal
+#shapiro.test(NUTLEVELS$NMM)   #not normal
+#shapiro.test(NUTLEVELS$PMM)   #not normal
+#shapiro.test(NUTLEVELS$KMM)     #NORMAL DIST
+#shapiro.test(NUTLEVELS$CaMM)    #NORMAL DIST
+#shapiro.test(NUTLEVELS$MaMM)  #not normal
+#shapiro.test(NUTLEVELS$SuMM)  #not normal
+#shapiro.test(NUTLEVELS$BoMM)  #not normal
+#shapiro.test(NUTLEVELS$CoMM)  #not normal
+#shapiro.test(NUTLEVELS$FeMM)    #NORMAL DIST
+#shapiro.test(NUTLEVELS$MangMM)#not normal
+#shapiro.test(NUTLEVELS$ZMM)   #not normal
 
-M1_M2$TNLA <- as.numeric(M1_M2$TNLA)
-shapiro.test(M1_M2$TNLA)  #not normal
+#NUTLEVELS$TNLA <- as.numeric(NUTLEVELS$TNLA)
+#shapiro.test(NUTLEVELS$TNLA)  #not normal
 
-M1_M2$CALA <- as.numeric(M1_M2$CALA)
-shapiro.test(M1_M2$CALA)  #not normal
+#NUTLEVELS$CALA <- as.numeric(NUTLEVELS$CALA)
+#shapiro.test(NUTLEVELS$CALA)  #not normal
 
-M1_M2$KLA <- as.numeric(M1_M2$KLA)
-shapiro.test(M1_M2$KLA)   #not normal
+#NUTLEVELS$KLA <- as.numeric(NUTLEVELS$KLA)
+#shapiro.test(NUTLEVELS$KLA)   #not normal
 
-M1_M2$MgLA <- as.numeric(M1_M2$MgLA)
-shapiro.test(M1_M2$MgLA)  #not normal
+#NUTLEVELS$MgLA <- as.numeric(NUTLEVELS$MgLA)
+#shapiro.test(NUTLEVELS$MgLA)  #not normal
 
-M1_M2$PLA <- as.numeric(M1_M2$PLA)
-shapiro.test(M1_M2$PLA)   #not normal
+#NUTLEVELS$PLA <- as.numeric(NUTLEVELS$PLA)
+#shapiro.test(NUTLEVELS$PLA)   #not normal
 
-M1_M2$AlLA <- as.numeric(M1_M2$AlLA)
-shapiro.test(M1_M2$AlLA)  #not normal
+#NUTLEVELS$AlLA <- as.numeric(NUTLEVELS$AlLA)
+#shapiro.test(NUTLEVELS$AlLA)  #not normal
 
-M1_M2$BLA <- as.numeric(M1_M2$BLA)
-shapiro.test(M1_M2$BLA)   #not normal
+#NUTLEVELS$BLA <- as.numeric(NUTLEVELS$BLA)
+#shapiro.test(NUTLEVELS$BLA)   #not normal
 
-M1_M2$CuLA <- as.numeric(M1_M2$CuLA)
-shapiro.test(M1_M2$CuLA)  #not normal
+#NUTLEVELS$CuLA <- as.numeric(NUTLEVELS$CuLA)
+#shapiro.test(NUTLEVELS$CuLA)  #not normal
 
-M1_M2$FeLA <- as.numeric(M1_M2$FeLA)
-shapiro.test(M1_M2$FeLA)  #not normal
+#NUTLEVELS$FeLA <- as.numeric(NUTLEVELS$FeLA)
+#shapiro.test(NUTLEVELS$FeLA)  #not normal
 
-M1_M2$MnLA <- as.numeric(M1_M2$MnLA)
-shapiro.test(M1_M2$MnLA)  #not normal
+#NUTLEVELS$MnLA <- as.numeric(NUTLEVELS$MnLA)
+#shapiro.test(NUTLEVELS$MnLA)  #not normal
 
-M1_M2$ZLA <- as.numeric(M1_M2$ZLA)
-shapiro.test(M1_M2$ZLA)   #not normal
+#NUTLEVELS$ZLA <- as.numeric(NUTLEVELS$ZLA)
+#shapiro.test(NUTLEVELS$ZLA)   #not normal
 ```
 
 ## Subset modified morgans (MM), saturdated media (SM) and leaf tissue (LT) tests by month after transplan (MX in SampPer). MM and SM are for same month, leaf tissue is for following month.
@@ -130,324 +132,130 @@ shapiro.test(M1_M2$ZLA)   #not normal
 MM_SM_M1 <- NUTLEVELS[which(NUTLEVELS$SampPer == "1M"), names(NUTLEVELS) %in% c("ID", "TMY", "MYsqFT", "NSME", "ASME", "PSME", "KSME", "MagSME", "CaSME", "AlSME", "BoSME", "CoSME", "FeSME", "MangSME", "SoSME", "SuSME", "ZSME", "NMM", "PMM", "KMM", "CaMM", "MaMM",  "SuMM", "BoMM", "CoMM", "FeMM", "MangMM", "ZMM")] 
 
 # subset 2M rows, LT columns
-LA_M2 <- NUTLEVELS[which(NUTS2$SampPer == "2M"), names(NUTLEVELS) %in% c("ID", "TNLA", "CALA", "KLA", "MgLA", "PLA", "AlLA", "BLA", "CuLA", "FeLA", "MnLA",  "ZLA")]
+LA_M2 <- NUTLEVELS[which(NUTLEVELS$SampPer == "2M"), names(NUTLEVELS) %in% c("ID", "TNLA", "CALA", "KLA", "MgLA", "PLA", "AlLA", "BLA", "CuLA", "FeLA", "MnLA",  "ZLA")]
 
 # merge MM_SM_M1 and LA_M2
 M1_M2 <- merge(MM_SM_M1, LA_M2)
 
 # some columns need to be tranformed into numberic vectors 
-#M1_M2 <- sapply(M1_M2, as.numeric)
-#is.numeric(M1_M2)
+# M1_M2 <- sapply(M1_M2, as.numeric)
+# is.numeric(M1_M2)
 ```
 ### Second month soil, third month leaf
 ```{r}
-# subset 1M rows, MM and SM columns
+# subset 2M rows, MM and SM columns
 MM_SM_M2 <- NUTLEVELS[which(NUTLEVELS$SampPer == "2M"), names(NUTLEVELS) %in% c("ID", "TMY", "MYsqFT", "NSME", "ASME", "PSME", "KSME", "MagSME", "CaSME", "AlSME", "BoSME", "CoSME", "FeSME", "MangSME", "SoSME", "SuSME", "ZSME", "NMM", "PMM", "KMM", "CaMM", "MaMM",  "SuMM", "BoMM", "CoMM", "FeMM", "MangMM", "ZMM")] 
 
 # subset 3M rows, LT columns
-LA_M3 <- NUTLEVELS[which(NUTS2$SampPer == "3M"), names(NUTLEVELS) %in% c("ID", "TNLA", "CALA", "KLA", "MgLA", "PLA", "AlLA", "BLA", "CuLA", "FeLA", "MnLA",  "ZLA")]
+LA_M3 <- NUTLEVELS[which(NUTLEVELS$SampPer == "3M"), names(NUTLEVELS) %in% c("ID", "TNLA", "CALA", "KLA", "MgLA", "PLA", "AlLA", "BLA", "CuLA", "FeLA", "MnLA",  "ZLA")]
 
-# merge MM_SM_M1 and LA_M2
+# merge MM_SM_M2 and LA_M3
 M2_M3 <- merge(MM_SM_M2, LA_M3)
 ```
-
-
-
-## Regress leaf tissue analysis on SME and MM for each nutrient
+### Third month soil, fourth month leaf
 ```{r}
-# There are too few LT tests in 1M_2M to run meaningful comparisons between M1 soil tests and # M2 LT samples for any nutrient.
+# subset 3M rows, MM and SM columns
+MM_SM_M3 <- NUTLEVELS[which(NUTLEVELS$SampPer == "3M"), names(NUTLEVELS) %in% c("ID", "TMY", "MYsqFT", "NSME", "ASME", "PSME", "KSME", "MagSME", "CaSME", "AlSME", "BoSME", "CoSME", "FeSME", "MangSME", "SoSME", "SuSME", "ZSME", "NMM", "PMM", "KMM", "CaMM", "MaMM",  "SuMM", "BoMM", "CoMM", "FeMM", "MangMM", "ZMM")] 
 
-cor(x = M2_M3$NSME, y = M2_M3$TNLA, method = "spearman")
+# subset 4M rows, LT columns
+LA_M4 <- NUTLEVELS[which(NUTLEVELS$SampPer == "4M"), names(NUTLEVELS) %in% c("ID", "TNLA", "CALA", "KLA", "MgLA", "PLA", "AlLA", "BLA", "CuLA", "FeLA", "MnLA",  "ZLA")]
+
+# merge MM_SM_M3 and LA_M4
+M3_M4 <- merge(MM_SM_M3, LA_M4)
+```
+### Fourth month soil, fifth month leaf
+```{r}
+# subset 3M rows, MM and SM columns
+MM_SM_M4 <- NUTLEVELS[which(NUTLEVELS$SampPer == "4M"), names(NUTLEVELS) %in% c("ID", "TMY", "MYsqFT", "NSME", "ASME", "PSME", "KSME", "MagSME", "CaSME", "AlSME", "BoSME", "CoSME", "FeSME", "MangSME", "SoSME", "SuSME", "ZSME", "NMM", "PMM", "KMM", "CaMM", "MaMM",  "SuMM", "BoMM", "CoMM", "FeMM", "MangMM", "ZMM")] 
+
+# subset 4M rows, LT columns
+LA_M5 <- NUTLEVELS[which(NUTLEVELS$SampPer == "5M"), names(NUTLEVELS) %in% c("ID", "TNLA", "CALA", "KLA", "MgLA", "PLA", "AlLA", "BLA", "CuLA", "FeLA", "MnLA",  "ZLA")]
+
+# merge MM_SM_M4 and LA_M5
+M4_M5 <- merge(MM_SM_M3, LA_M4)
+```
+
+## Regress leaf tissue analysis on SME and MM for N
+```{r}
+# N
+# 1MAT soil, 2MAT leaf --> No sig correlation
+
+cor.test(x = M1_M2$NSME, y = M1_M2$TNLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M1_M2$TNLA), exact = NULL)
+cor.test(x = M1_M2$NMM, y = M1_M2$TNLA, alternative = "two.sided", method = "spearman", exact = NULL)
+
+# 2MAT soil, 3MAT leaf --> No sig correlation
+
 cor.test(x = M2_M3$NSME, y = M2_M3$TNLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M2_M3$TNLA), exact = NULL)
 cor.test(x = M2_M3$NMM, y = M2_M3$TNLA, alternative = "two.sided", method = "spearman", exact = NULL)
-dist(M2_M3$NSME)
-str(M2_M3$TNLA)
-str(M2_M3$NSME)
+
+# 3MAT soil, 4MAT leaf --> SME not sig correlated. MM is significantly correlated at the 0.05 level. However, linear model is not significant.
+
+cor.test(x = M3_M4$NSME, y = M3_M4$TNLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M3_M4$TNLA), exact = NULL)
+cor.test(x = M3_M4$NMM, y = M3_M4$TNLA, alternative = "two.sided", method = "spearman", exact = NULL)
+
+mod1 <- lm(NSME~TNLA, data=M3_M4)
+
+summary(mod1)
+
+plot(M3_M4$NMM, M3_M4$TNLA, type = "p", main = "TN leaf (4 MAT) ~ N Saturated Media (3 MAT)", xlab = "Modified Morgans ppm", ylab = "Total N leaf analysis ppm")
+abline(lm(M3_M4$TNLA~M3_M4$NMM), col = "red") # regression line
+ 
+# 4MAT soil, 5MAT leaf --> SME not sig correlated. MM is significantly correlated at the 0.05 level. However, linear model is not significant.
+
+cor.test(x = M4_M5$NSME, y = M4_M5$TNLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M4_M5$TNLA), exact = NULL)
+cor.test(x = M4_M5$NMM, y = M4_M5$TNLA, alternative = "two.sided", method = "spearman", exact = NULL)
+
+mod2 <- lm(NSME~TNLA, data=M4_M5)
+
+summary(mod2)
+
+plot(M4_M5$NMM, M4_M5$TNLA, type = "p", main = "TN leaf (5 MAT) ~ N Saturated Media (4 MAT)", xlab = "Modified Morgans ppm", ylab = "Total N leaf analysis ppm")
 ```
 
-## plot correlations
+## Regress leaf tissue analysis on SME and MM for P
 ```{r}
-?plot
-plot(M1_M2$NSME, M1_M2$TNLA, type = "p", main = "TN leaf ~ N Saturated Media", xlab = "Saturated Media Extract ppm", ylab = "Total N leaf analysis ppm")
-#abline(lm(M1_M2$NSME, M1_M2$TNLA), col = "red") # regression line
-```
-# Phosphorus
-## Create dataframe w/variables of interest for P only, omit rows with NA
-
-```{r}
-tomatofun_P <- subset(data, select = c("Phosphorus..ppm..SME", "Phosphorus..lb.Ac..MM", "P.....Leaf.Analysis"))
-tomatofun_P_NONA <- na.omit(tomatofun_P) 
-
-```
-
-## Check distribution 
-
-```{r}
-shapiro.test(tomatofun_P_NONA$Phosphorus..ppm..SME)
-shapiro.test(tomatofun_P_NONA$Phosphorus..lb.Ac..MM)
-shapiro.test(tomatofun_P_NONA$P.....Leaf.Analysis)
-```
-
-## Correlation tests
-
-```{r}
-
-cor(tomatofun_P_NONA, method = "spearman")
-
-cor.test(x = tomatofun_P_NONA$Phosphorus..ppm..SME, y = tomatofun_P_NONA$Phosphorus..lb.Ac..MM, alternative = "two.sided", method = "spearman", exact = NULL)
-cor.test(x = tomatofun_P_NONA$Phosphorus..ppm..SME, y = tomatofun_P_NONA$P.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
-cor.test(x = tomatofun_P_NONA$Phosphorus..lb.Ac..MM, y = tomatofun_P_NONA$P.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
-
-```
-
-## plot SME and MM correlations
-```{r}
-
-plot(tomatofun_P_NONA$Phosphorus..lb.Ac..MM, tomatofun_P_NONA$Phosphorus..ppm..SME, type = "p", main = "Phosphorus SME and MM, p < 0.001", xlab = "MM PPM", ylab = "SME PPM")
-
-abline(lm(tomatofun_P_NONA$Phosphorus..ppm..SME~tomatofun_P_NONA$Phosphorus..lb.Ac..MM), col = "red") # regression line
-```
-
-# Potassium
-## Create dataframe w/variables of interest for P only, omit rows with NA
-head(data)
-
-```{r}
-tomatofun_K <- subset(data, select = c("Potassium..ppm..SME", "Potassium..lb.Ac..MM", "K.....Leaf.Analysis"))
-tomatofun_K_NONA <- na.omit(tomatofun_K) 
-
-```
-
-## Check distribution 
-
-```{r}
-shapiro.test(tomatofun_K_NONA$Potassium..ppm..SME)
-shapiro.test(tomatofun_K_NONA$Potassium..lb.Ac..MM)
-shapiro.test(tomatofun_K_NONA$K.....Leaf.Analysis)
-```
-
-```{r}
-
-cor(tomatofun_K_NONA, method = "spearman")
-
-cor.test(x = tomatofun_K_NONA$Potassium..ppm..SME, y = tomatofun_K_NONA$Potassium..lb.Ac..MM, alternative = "two.sided", method = "spearman", exact = NULL)
-cor.test(x = tomatofun_K_NONA$Potassium..ppm..SME, y = tomatofun_K_NONA$K.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
-cor.test(x = tomatofun_K_NONA$Potassium..lb.Ac..MM, y = tomatofun_K_NONA$K.....Leaf.Analysis, alternative = "two.sided", method = "spearman", exact = NULL)
-
-```
-
-## plot SME and MM correlations
-```{r}
-
-plot(tomatofun_K_NONA$Potassium..ppm..SME, tomatofun_K_NONA$Potassium..lb.Ac..MM, type = "p", main = "Potassium SME and MM, p < 0.001", xlab = "SME PPM", ylab = "MM PPM")
-abline(lm(tomatofun_K_NONA$Potassium..lb.Ac..MM~tomatofun_K_NONA$Potassium..ppm..SME), col = "red") # regression line
-```
-
-# P SME and pH MM
-## Create dataframe w/variables of interest, omit rows with NA
-head(data)
-```{r}
-tomatofun_P_pH <- subset(data, select = c("Phosphorus..ppm..SME", "Soil.pH"))
-tomatofun_P_pH_NONA <- na.omit(tomatofun_P_pH) 
-```
-
-```{r}
-
-cor(tomatofun_P_pH_NONA, method = "spearman")
-
-cor.test(x = tomatofun_P_pH_NONA$Phosphorus..ppm..SME, y = tomatofun_P_pH_NONA$Soil.pH, alternative = "two.sided", method = "spearman", exact = NULL)
-
-plot(tomatofun_P_pH_NONA$Phosphorus..ppm..SME, tomatofun_P_pH_NONA$Soil.pH, type = "p", main = "Phosphorus SME and pH, p < 0.001", xlab = "SME PPM", ylab = "pH")
-abline(lm(tomatofun_P_pH_NONA$Soil.pH~tomatofun_P_pH_NONA$Phosphorus..ppm..SME), col = "red") # regression line
-```
-
-# Take home message: No significant difference between Nitrate levels (any test) by sample period. 
-```{r}
-
-tomatofun_yield_N <- subset(data, select = c("Total.Yield.per.sq.ft", "Sample.Period", "Nitrate.N..ppm..SME", "Nitrate.N..ppm..MM", "TN.....Leaf.Analysis"))
-
-tomatofun_yield_N_NONA <- na.omit(tomatofun_yield_N)
-
-#set comparisons for error plots
-my_comparisons <- list(c("Pre-Plant", "1-MAT"), c("Pre-Plant", "2-MAT"), c("Pre-Plant", "3-MAT"), c("Pre-Plant", "4-MAT"), c("Pre-Plant", "5-MAT"))
-my_comparisonsb <- list(c("1-MAT", "2-MAT"), c("1-MAT", "3-MAT"), c("1-MAT", "4-MAT"), c("1-MAT", "5-MAT"))
-
-#correct order of sample periods
-tomatofun_yield_N_NONA$"Sample.Period" <- factor(tomatofun_yield_N_NONA$"Sample.Period", levels = c('Pre-Plant', 
-                                                                                           '1-MAT', 
-                                                                                            '2-MAT', 
-                                                                                            '3-MAT', 
-                                                                                            '4-MAT', 
-                                                                                            '5-MAT'))
-
-ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period", 
-            y = "Nitrate.N..ppm..SME",
-            combine = FALSE, merge = TRUE,
-            desc_stat = "mean_ci",  
-            color = "black",
-            palette = "npg",
-            title = "Sampling period and SME nitrate",
-            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
-            ylim = c(-500, 1000),
-            legend = "bottom",
-            xlab = "sample period",
-            ylab = "SME Nitrate",
-            orientation = "vertical") + 
-            stat_compare_means(comparisons = my_comparisonsb) +
-            stat_compare_means(label.y = -250, label.x = )
-
-ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period", 
-            y = "Nitrate.N..ppm..MM",
-            combine = FALSE, merge = TRUE,
-            desc_stat = "mean_ci",  
-            color = "black",
-            palette = "npg",
-            title = "Sampling period and MM nitrate",
-            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
-            ylim = c(-500, 1000),
-            legend = "bottom",
-            xlab = "sample period",
-            ylab = "MM Nitrate",
-            orientation = "vertical") + 
-            stat_compare_means(comparisons = my_comparisonsb) +
-            stat_compare_means(label.y = -250, label.x = )
-
-ggerrorplot(tomatofun_yield_N_NONA, x = "Sample.Period", 
-            y = "TN.....Leaf.Analysis",
-            combine = FALSE, merge = TRUE,
-            desc_stat = "mean_ci",  
-            color = "black",
-            palette = "npg",
-            title = "Sampling period and total N(leaf)",
-            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
-            ylim = c(-2, 8),
-            legend = "bottom",
-            xlab = "sample period",
-            ylab = "Total N",
-            orientation = "vertical") + 
-            stat_compare_means(comparisons = my_comparisonsb) +
-            stat_compare_means(label.y = -0, label.x = )
-
-```
-
-## Linear multiple regression models for all measures of N
-# take away message: no models are significant. In otherwords, there is no evidence that testing N at a 
-# particular MAT has any relationship to yeild.
-```{r, echo = TRUE}
-as.factor(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft")
-as.factor(tomatofun_yield_N_NONA$"Sample.Period")
-as.factor(tomatofun_yield_N_NONA$"Nitrate.N..ppm..SME")
-as.factor(tomatofun_yield_N_NONA$"Nitrate.N..ppm..MM")
-as.factor(tomatofun_yield_N_NONA$"TN.....Leaf.Analysis")
-```
-
-```{r}
-#run model
-M1 <- lm(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_N_NONA$"Nitrate.N..ppm..SME" + tomatofun_yield_N_NONA$"Sample.Period", data = tomatofun_yield_N_NONA, method = "qr")
-
-#check assumptions
-mean(M1$residuals)        #Mean is <1, which is good.
-plot(M1)                  #Residuals vs fitted indicate homoscedasticity. Will need to rerun model. Points are normally distributed.
-acf(M1$residuals)         #No autocorrelation of residuals.
-lmtest::dwtest(M1)        #No autocorrelation of residuals.
-cor.test(tomatofun_yield_N_NONA$Nitrate.N..ppm..SME, M1$residuals)   #X variables and residuals are not correlated.
-var(tomatofun_yield_N_NONA$Nitrate.N..ppm..SME)   #Variability is positive.
-vif(M1)                   #Low GIF (<4) means low chance of multi-collinearity. 
-gvlma::gvlma(M1)          #Shortcut for checking assumptions. 
-summary(M1)
-
-# if the model had been successful, I would take the time to remove the outliers and re-run, but since the model is not 
-# significant, I think it would be a waste of time.
-
-M2 <- lm(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_N_NONA$"Nitrate.N..ppm..MM" + tomatofun_yield_N_NONA$"Sample.Period", data = tomatofun_yield_N_NONA, method = "qr")
-gvlma::gvlma(M2)
-summary(M2)
-
-M3 <- lm(tomatofun_yield_N_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_N_NONA$TN.....Leaf.Analysis + tomatofun_yield_N_NONA$"Sample.Period", data = tomatofun_yield_N_NONA, method = "qr")
-gvlma::gvlma(M3)
-summary(M3)
-
-```
-head(data)
 # P
-```{r}
-tomatofun_yield_P <- subset(data, select = c("Total.Yield.per.sq.ft", "Sample.Period", "Phosphorus..ppm..SME", "Phosphorus..lb.Ac..MM", "P.....Leaf.Analysis"))
+# 1MAT soil, 2MAT leaf --> No sig correlation
 
-tomatofun_yield_P_NONA <- na.omit(tomatofun_yield_P)
+cor.test(x = M1_M2$PSME, y = M1_M2$PLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M1_M2$PLA), exact = NULL)
+cor.test(x = M1_M2$PMM, y = M1_M2$PLA, alternative = "two.sided", method = "spearman", exact = NULL)
 
-#set comparisons for error plots
-my_comparisons <- list(c("Pre-Plant", "1-MAT"), c("Pre-Plant", "2-MAT"), c("Pre-Plant", "3-MAT"), c("Pre-Plant", "4-MAT"), c("Pre-Plant", "5-MAT"))
-my_comparisonsb <- list(c("1-MAT", "2-MAT"), c("1-MAT", "3-MAT"), c("1-MAT", "4-MAT"), c("1-MAT", "5-MAT"))
+# 2MAT soil, 3MAT leaf --> No sig correlation
 
-#correct order of sample periods
-tomatofun_yield_P_NONA$"Sample.Period" <- factor(tomatofun_yield_P_NONA$"Sample.Period", levels = c('Pre-Plant', 
-                                                                                           '1-MAT', 
-                                                                                            '2-MAT', 
-                                                                                            '3-MAT', 
-                                                                                            '4-MAT', 
-                                                                                            '5-MAT'))
+cor.test(x = M2_M3$PSME, y = M2_M3$PLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M2_M3$PLA), exact = NULL)
+cor.test(x = M2_M3$PMM, y = M2_M3$PLA, alternative = "two.sided", method = "spearman", exact = NULL)
 
-ggerrorplot(tomatofun_yield_P_NONA, x = "Sample.Period", 
-            y = "Phosphorus..ppm..SME",
-            combine = FALSE, merge = TRUE,
-            desc_stat = "mean_ci",  
-            color = "black",
-            palette = "npg",
-            title = "Sampling period and SME phosphorus",
-            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
-            ylim = c(-5, 19),
-            legend = "bottom",
-            xlab = "sample period",
-            ylab = "SME Phospohorus",
-            orientation = "vertical") + 
-            stat_compare_means(comparisons = my_comparisonsb) +
-            stat_compare_means(label.y = -5, label.x = )
+# 3MAT soil, 4MAT leaf --> No sig relationship
 
-ggerrorplot(tomatofun_yield_P_NONA, x = "Sample.Period", 
-            y = "Phosphorus..lb.Ac..MM",
-            combine = FALSE, merge = TRUE,
-            desc_stat = "mean_ci",  
-            color = "black",
-            palette = "npg",
-            title = "Sampling period and MM phosphorus",
-            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
-            ylim = c(-1000, 2000),
-            legend = "bottom",
-            xlab = "sample period",
-            ylab = "MM Phosphorus",
-            orientation = "vertical") + 
-            stat_compare_means(comparisons = my_comparisonsb) +
-            stat_compare_means(label.y = -1000, label.x = )
+cor.test(x = M3_M4$PSME, y = M3_M4$PLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M3_M4$PLA), exact = NULL)
+cor.test(x = M3_M4$PMM, y = M3_M4$PLA, alternative = "two.sided", method = "spearman", exact = NULL)
+ 
+# 4MAT soil, 5MAT leaf --> No sig relationship
 
-ggerrorplot(tomatofun_yield_P_NONA, x = "Sample.Period", 
-            y = "P.....Leaf.Analysis",
-            combine = FALSE, merge = TRUE,
-            desc_stat = "mean_ci",  
-            color = "black",
-            palette = "npg",
-            title = "Sampling period and total P(leaf)",
-            add = "violin", add.params = list(color = "darkgray", fill="lightgray"),
-            ylim = c(-.25, 1),
-            legend = "bottom",
-            xlab = "sample period",
-            ylab = "Total P",
-            orientation = "vertical") + 
-            stat_compare_means(comparisons = my_comparisonsb) +
-            stat_compare_means(label.y = -.2, label.x = )
+cor.test(x = M4_M5$PSME, y = M4_M5$PLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M4_M5$PLA), exact = NULL)
+cor.test(x = M4_M5$PMM, y = M4_M5$PLA, alternative = "two.sided", method = "spearman", exact = NULL)
 ```
-## Linear multiple regression models for all measures of P
-# take away message: no models are significant. In otherwords, there is no evidence that testing P at a 
-# particular MAT has any relationship to yeild.
-
 ```{r}
+# K
+# 1MAT soil, 2MAT leaf --> No sig correlation
 
-M4 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA$"Phosphorus..ppm..SME" + tomatofun_yield_P_NONA$"Sample.Period", data = tomatofun_yield_P_NONA, method = "qr")
-gvlma::gvlma(M4)
-summary(M2)
+cor.test(x = M1_M2$KSME, y = M1_M2$KLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M1_M2$KLA), exact = NULL)
+cor.test(x = M1_M2$KMM, y = M1_M2$KLA, alternative = "two.sided", method = "spearman", exact = NULL)
 
-M5 <- lm(tomatofun_yield_P_NONA$"Total.Yield.per.sq.ft" ~ tomatofun_yield_P_NONA$"Phosphorus..lb.Ac..MM" + tomatofun_yield_P_NONA$"Sample.Period", data = tomatofun_yield_P_NONA, method = "qr")
-gvlma::gvlma(M5)
-summary(M5) #model is significant, however the only coefficient that is sig is the Ph.MM measure (not any sampling period)
+# 2MAT soil, 3MAT leaf --> No sig correlation
 
+cor.test(x = M2_M3$KSME, y = M2_M3$KLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M2_M3$KLA), exact = NULL)
+cor.test(x = M2_M3$KMM, y = M2_M3$KLA, alternative = "two.sided", method = "spearman", exact = NULL)
 
+# 3MAT soil, 4MAT leaf --> No sig relationship
+
+cor.test(x = M3_M4$KSME, y = M3_M4$KLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M3_M4$KLA), exact = NULL)
+cor.test(x = M3_M4$KMM, y = M3_M4$KLA, alternative = "two.sided", method = "spearman", exact = NULL)
+ 
+# 4MAT soil, 5MAT leaf --> No sig relationship
+
+cor.test(x = M4_M5$KSME, y = M4_M5$KLA, alternative = "two.sided", method = "spearman", na.action = na.omit(M4_M5$KLA), exact = NULL)
+cor.test(x = M4_M5$KMM, y = M4_M5$KLA, alternative = "two.sided", method = "spearman", exact = NULL)
 ```
+
+

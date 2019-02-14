@@ -1,0 +1,979 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Tomato nutrient study correlations, 2nd version},
+            pdfauthor={Rachel Schattman},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Tomato nutrient study correlations, 2nd version}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Rachel Schattman}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{November 27, 2018}
+
+
+\begin{document}
+\maketitle
+
+\subsection{Load library}\label{load-library}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: magrittr
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: carData
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'car'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     recode
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(gvlma)}
+\KeywordTok{library}\NormalTok{(reshape2)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Questions of interest}\label{questions-of-interest}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The effects of cumulative nutrient applications on leaf tissue and
+  soil nutrient levels the month after. (MASS only)
+\item
+  The effects of soil test in any given month and the leaf tissue
+  samples of the following month.
+\item
+  The effects of diseases on yield (H1: powdery mildew will have the
+  biggest effect)
+\item
+  The effect of compaction on yield
+\item
+  The effect of plant density on yield
+\item
+  The effect of planting date on yield
+\end{enumerate}
+
+\subsection{Start script}\label{start-script}
+
+\section{Data preparation}\label{data-preparation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{script_path <-}\StringTok{ "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV"}
+\NormalTok{in_dir <-}\StringTok{ "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV"}
+\NormalTok{out_dir <-}\StringTok{ "C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/output/CSV"}
+\end{Highlighting}
+\end{Shaded}
+
+\section{read in datasets}\label{read-in-datasets}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FARMS <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV/Farms.csv"}\NormalTok{))}
+\NormalTok{NUTADDED <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV/NutAdd.csv"}\NormalTok{))}
+\NormalTok{NUTLEVELS <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV/NutLevel.csv"}\NormalTok{))}
+\NormalTok{PESTS <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV/Pests.csv"}\NormalTok{))}
+\NormalTok{SPACEYIELD <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/rschattman/Documents/Research/Greenhouse_tomatoes_2018/CSV/SpaceYield.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Merge dataframes}\label{merge-dataframes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NUTS <-}\KeywordTok{merge}\NormalTok{(NUTADDED, SPACEYIELD)}
+\NormalTok{NUTS2 <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(NUTS, NUTLEVELS)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Question 2: The effects of soil test in any given month and the
+leaf tissue samples of the following
+month.}\label{question-2-the-effects-of-soil-test-in-any-given-month-and-the-leaf-tissue-samples-of-the-following-month.}
+
+\subsection{Test variables for normal
+distribution}\label{test-variables-for-normal-distribution}
+
+\subsubsection{Note to self: figure out this whole batch processing
+business.}\label{note-to-self-figure-out-this-whole-batch-processing-business.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#shapiro.test(NUTLEVELS$TMY)   #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$MYsqFT)#not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$NSME)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$ASME)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$PSME)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$KSME)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$MagSME)  #NORMAL DIST}
+\CommentTok{#shapiro.test(NUTLEVELS$CaSME) #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$AlSME) #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$BoSME) #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$CoSME) #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$FeSME)   #NORMAL DIST}
+
+\CommentTok{#NUTLEVELS$MangSME <- as.numeric(NUTLEVELS$MangSME) #transform into numberic}
+\CommentTok{#shapiro.test(NUTLEVELS$MangSME) #NORMAL DIST}
+
+\CommentTok{#shapiro.test(NUTLEVELS$SoSME) #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$SuSME) #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$ZSME)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$NMM)   #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$PMM)   #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$KMM)     #NORMAL DIST}
+\CommentTok{#shapiro.test(NUTLEVELS$CaMM)    #NORMAL DIST}
+\CommentTok{#shapiro.test(NUTLEVELS$MaMM)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$SuMM)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$BoMM)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$CoMM)  #not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$FeMM)    #NORMAL DIST}
+\CommentTok{#shapiro.test(NUTLEVELS$MangMM)#not normal}
+\CommentTok{#shapiro.test(NUTLEVELS$ZMM)   #not normal}
+
+\CommentTok{#NUTLEVELS$TNLA <- as.numeric(NUTLEVELS$TNLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$TNLA)  #not normal}
+
+\CommentTok{#NUTLEVELS$CALA <- as.numeric(NUTLEVELS$CALA)}
+\CommentTok{#shapiro.test(NUTLEVELS$CALA)  #not normal}
+
+\CommentTok{#NUTLEVELS$KLA <- as.numeric(NUTLEVELS$KLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$KLA)   #not normal}
+
+\CommentTok{#NUTLEVELS$MgLA <- as.numeric(NUTLEVELS$MgLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$MgLA)  #not normal}
+
+\CommentTok{#NUTLEVELS$PLA <- as.numeric(NUTLEVELS$PLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$PLA)   #not normal}
+
+\CommentTok{#NUTLEVELS$AlLA <- as.numeric(NUTLEVELS$AlLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$AlLA)  #not normal}
+
+\CommentTok{#NUTLEVELS$BLA <- as.numeric(NUTLEVELS$BLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$BLA)   #not normal}
+
+\CommentTok{#NUTLEVELS$CuLA <- as.numeric(NUTLEVELS$CuLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$CuLA)  #not normal}
+
+\CommentTok{#NUTLEVELS$FeLA <- as.numeric(NUTLEVELS$FeLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$FeLA)  #not normal}
+
+\CommentTok{#NUTLEVELS$MnLA <- as.numeric(NUTLEVELS$MnLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$MnLA)  #not normal}
+
+\CommentTok{#NUTLEVELS$ZLA <- as.numeric(NUTLEVELS$ZLA)}
+\CommentTok{#shapiro.test(NUTLEVELS$ZLA)   #not normal}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Subset modified morgans (MM), saturdated media (SM) and leaf
+tissue (LT) tests by month after transplan (MX in SampPer). MM and SM
+are for same month, leaf tissue is for following
+month.}\label{subset-modified-morgans-mm-saturdated-media-sm-and-leaf-tissue-lt-tests-by-month-after-transplan-mx-in-sampper.-mm-and-sm-are-for-same-month-leaf-tissue-is-for-following-month.}
+
+\subsubsection{First month soil, second month
+leaf}\label{first-month-soil-second-month-leaf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# subset 1M rows, MM and SM columns}
+\NormalTok{MM_SM_M1 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "1M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TMY"}\NormalTok{, }\StringTok{"MYsqFT"}\NormalTok{, }\StringTok{"NSME"}\NormalTok{, }\StringTok{"ASME"}\NormalTok{, }\StringTok{"PSME"}\NormalTok{, }\StringTok{"KSME"}\NormalTok{, }\StringTok{"MagSME"}\NormalTok{, }\StringTok{"CaSME"}\NormalTok{, }\StringTok{"AlSME"}\NormalTok{, }\StringTok{"BoSME"}\NormalTok{, }\StringTok{"CoSME"}\NormalTok{, }\StringTok{"FeSME"}\NormalTok{, }\StringTok{"MangSME"}\NormalTok{, }\StringTok{"SoSME"}\NormalTok{, }\StringTok{"SuSME"}\NormalTok{, }\StringTok{"ZSME"}\NormalTok{, }\StringTok{"NMM"}\NormalTok{, }\StringTok{"PMM"}\NormalTok{, }\StringTok{"KMM"}\NormalTok{, }\StringTok{"CaMM"}\NormalTok{, }\StringTok{"MaMM"}\NormalTok{,  }\StringTok{"SuMM"}\NormalTok{, }\StringTok{"BoMM"}\NormalTok{, }\StringTok{"CoMM"}\NormalTok{, }\StringTok{"FeMM"}\NormalTok{, }\StringTok{"MangMM"}\NormalTok{, }\StringTok{"ZMM"}\NormalTok{)] }
+
+\CommentTok{# subset 2M rows, LT columns}
+\NormalTok{LA_M2 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "2M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TNLA"}\NormalTok{, }\StringTok{"CALA"}\NormalTok{, }\StringTok{"KLA"}\NormalTok{, }\StringTok{"MgLA"}\NormalTok{, }\StringTok{"PLA"}\NormalTok{, }\StringTok{"AlLA"}\NormalTok{, }\StringTok{"BLA"}\NormalTok{, }\StringTok{"CuLA"}\NormalTok{, }\StringTok{"FeLA"}\NormalTok{, }\StringTok{"MnLA"}\NormalTok{,  }\StringTok{"ZLA"}\NormalTok{)]}
+
+\CommentTok{# merge MM_SM_M1 and LA_M2}
+\NormalTok{M1_M2 <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(MM_SM_M1, LA_M2)}
+
+\CommentTok{# some columns need to be tranformed into numberic vectors }
+\CommentTok{# M1_M2 <- sapply(M1_M2, as.numeric)}
+\CommentTok{# is.numeric(M1_M2)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Second month soil, third month
+leaf}\label{second-month-soil-third-month-leaf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# subset 2M rows, MM and SM columns}
+\NormalTok{MM_SM_M2 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "2M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TMY"}\NormalTok{, }\StringTok{"MYsqFT"}\NormalTok{, }\StringTok{"NSME"}\NormalTok{, }\StringTok{"ASME"}\NormalTok{, }\StringTok{"PSME"}\NormalTok{, }\StringTok{"KSME"}\NormalTok{, }\StringTok{"MagSME"}\NormalTok{, }\StringTok{"CaSME"}\NormalTok{, }\StringTok{"AlSME"}\NormalTok{, }\StringTok{"BoSME"}\NormalTok{, }\StringTok{"CoSME"}\NormalTok{, }\StringTok{"FeSME"}\NormalTok{, }\StringTok{"MangSME"}\NormalTok{, }\StringTok{"SoSME"}\NormalTok{, }\StringTok{"SuSME"}\NormalTok{, }\StringTok{"ZSME"}\NormalTok{, }\StringTok{"NMM"}\NormalTok{, }\StringTok{"PMM"}\NormalTok{, }\StringTok{"KMM"}\NormalTok{, }\StringTok{"CaMM"}\NormalTok{, }\StringTok{"MaMM"}\NormalTok{,  }\StringTok{"SuMM"}\NormalTok{, }\StringTok{"BoMM"}\NormalTok{, }\StringTok{"CoMM"}\NormalTok{, }\StringTok{"FeMM"}\NormalTok{, }\StringTok{"MangMM"}\NormalTok{, }\StringTok{"ZMM"}\NormalTok{)] }
+
+\CommentTok{# subset 3M rows, LT columns}
+\NormalTok{LA_M3 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "3M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TNLA"}\NormalTok{, }\StringTok{"CALA"}\NormalTok{, }\StringTok{"KLA"}\NormalTok{, }\StringTok{"MgLA"}\NormalTok{, }\StringTok{"PLA"}\NormalTok{, }\StringTok{"AlLA"}\NormalTok{, }\StringTok{"BLA"}\NormalTok{, }\StringTok{"CuLA"}\NormalTok{, }\StringTok{"FeLA"}\NormalTok{, }\StringTok{"MnLA"}\NormalTok{,  }\StringTok{"ZLA"}\NormalTok{)]}
+
+\CommentTok{# merge MM_SM_M2 and LA_M3}
+\NormalTok{M2_M3 <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(MM_SM_M2, LA_M3)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Third month soil, fourth month
+leaf}\label{third-month-soil-fourth-month-leaf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# subset 3M rows, MM and SM columns}
+\NormalTok{MM_SM_M3 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "3M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TMY"}\NormalTok{, }\StringTok{"MYsqFT"}\NormalTok{, }\StringTok{"NSME"}\NormalTok{, }\StringTok{"ASME"}\NormalTok{, }\StringTok{"PSME"}\NormalTok{, }\StringTok{"KSME"}\NormalTok{, }\StringTok{"MagSME"}\NormalTok{, }\StringTok{"CaSME"}\NormalTok{, }\StringTok{"AlSME"}\NormalTok{, }\StringTok{"BoSME"}\NormalTok{, }\StringTok{"CoSME"}\NormalTok{, }\StringTok{"FeSME"}\NormalTok{, }\StringTok{"MangSME"}\NormalTok{, }\StringTok{"SoSME"}\NormalTok{, }\StringTok{"SuSME"}\NormalTok{, }\StringTok{"ZSME"}\NormalTok{, }\StringTok{"NMM"}\NormalTok{, }\StringTok{"PMM"}\NormalTok{, }\StringTok{"KMM"}\NormalTok{, }\StringTok{"CaMM"}\NormalTok{, }\StringTok{"MaMM"}\NormalTok{,  }\StringTok{"SuMM"}\NormalTok{, }\StringTok{"BoMM"}\NormalTok{, }\StringTok{"CoMM"}\NormalTok{, }\StringTok{"FeMM"}\NormalTok{, }\StringTok{"MangMM"}\NormalTok{, }\StringTok{"ZMM"}\NormalTok{)] }
+
+\CommentTok{# subset 4M rows, LT columns}
+\NormalTok{LA_M4 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "4M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TNLA"}\NormalTok{, }\StringTok{"CALA"}\NormalTok{, }\StringTok{"KLA"}\NormalTok{, }\StringTok{"MgLA"}\NormalTok{, }\StringTok{"PLA"}\NormalTok{, }\StringTok{"AlLA"}\NormalTok{, }\StringTok{"BLA"}\NormalTok{, }\StringTok{"CuLA"}\NormalTok{, }\StringTok{"FeLA"}\NormalTok{, }\StringTok{"MnLA"}\NormalTok{,  }\StringTok{"ZLA"}\NormalTok{)]}
+
+\CommentTok{# merge MM_SM_M3 and LA_M4}
+\NormalTok{M3_M4 <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(MM_SM_M3, LA_M4)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Fourth month soil, fifth month
+leaf}\label{fourth-month-soil-fifth-month-leaf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# subset 3M rows, MM and SM columns}
+\NormalTok{MM_SM_M4 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "4M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TMY"}\NormalTok{, }\StringTok{"MYsqFT"}\NormalTok{, }\StringTok{"NSME"}\NormalTok{, }\StringTok{"ASME"}\NormalTok{, }\StringTok{"PSME"}\NormalTok{, }\StringTok{"KSME"}\NormalTok{, }\StringTok{"MagSME"}\NormalTok{, }\StringTok{"CaSME"}\NormalTok{, }\StringTok{"AlSME"}\NormalTok{, }\StringTok{"BoSME"}\NormalTok{, }\StringTok{"CoSME"}\NormalTok{, }\StringTok{"FeSME"}\NormalTok{, }\StringTok{"MangSME"}\NormalTok{, }\StringTok{"SoSME"}\NormalTok{, }\StringTok{"SuSME"}\NormalTok{, }\StringTok{"ZSME"}\NormalTok{, }\StringTok{"NMM"}\NormalTok{, }\StringTok{"PMM"}\NormalTok{, }\StringTok{"KMM"}\NormalTok{, }\StringTok{"CaMM"}\NormalTok{, }\StringTok{"MaMM"}\NormalTok{,  }\StringTok{"SuMM"}\NormalTok{, }\StringTok{"BoMM"}\NormalTok{, }\StringTok{"CoMM"}\NormalTok{, }\StringTok{"FeMM"}\NormalTok{, }\StringTok{"MangMM"}\NormalTok{, }\StringTok{"ZMM"}\NormalTok{)] }
+
+\CommentTok{# subset 4M rows, LT columns}
+\NormalTok{LA_M5 <-}\StringTok{ }\NormalTok{NUTLEVELS[}\KeywordTok{which}\NormalTok{(NUTLEVELS$SampPer ==}\StringTok{ "5M"}\NormalTok{), }\KeywordTok{names}\NormalTok{(NUTLEVELS) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"TNLA"}\NormalTok{, }\StringTok{"CALA"}\NormalTok{, }\StringTok{"KLA"}\NormalTok{, }\StringTok{"MgLA"}\NormalTok{, }\StringTok{"PLA"}\NormalTok{, }\StringTok{"AlLA"}\NormalTok{, }\StringTok{"BLA"}\NormalTok{, }\StringTok{"CuLA"}\NormalTok{, }\StringTok{"FeLA"}\NormalTok{, }\StringTok{"MnLA"}\NormalTok{,  }\StringTok{"ZLA"}\NormalTok{)]}
+
+\CommentTok{# merge MM_SM_M4 and LA_M5}
+\NormalTok{M4_M5 <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(MM_SM_M3, LA_M4)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Regress leaf tissue analysis on SME and MM for
+N}\label{regress-leaf-tissue-analysis-on-sme-and-mm-for-n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# N}
+\CommentTok{# 1MAT soil, 2MAT leaf --> No sig correlation}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M1_M2$NSME, }\DataTypeTok{y =} \NormalTok{M1_M2$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M1_M2$TNLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M1_M2$NSME, y = M1_M2$TNLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M1_M2$NSME and M1_M2$TNLA
+## S = 494.8, p-value = 0.118
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.3936236
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M1_M2$NMM, }\DataTypeTok{y =} \NormalTok{M1_M2$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M1_M2$NMM and M1_M2$TNLA
+## S = 140, p-value = 0.6818
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.1515152
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 2MAT soil, 3MAT leaf --> No sig correlation}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M2_M3$NSME, }\DataTypeTok{y =} \NormalTok{M2_M3$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M2_M3$TNLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M2_M3$NSME and M2_M3$TNLA
+## S = 548, p-value = 0.47
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.1941176
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M2_M3$NMM, }\DataTypeTok{y =} \NormalTok{M2_M3$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M2_M3$NMM and M2_M3$TNLA
+## S = 200, p-value = 0.7966
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## 0.09090909
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 3MAT soil, 4MAT leaf --> SME not sig correlated. MM is significantly correlated at the 0.05 level. However, linear model is not significant.}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M3_M4$NSME, }\DataTypeTok{y =} \NormalTok{M3_M4$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M3_M4$TNLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M3_M4$NSME and M3_M4$TNLA
+## S = 112, p-value = 0.1292
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4909091
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M3_M4$NMM, }\DataTypeTok{y =} \NormalTok{M3_M4$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M3_M4$NMM and M3_M4$TNLA
+## S = 40, p-value = 0.01592
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.7575758
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(NSME~TNLA, }\DataTypeTok{data=}\NormalTok{M3_M4)}
+
+\KeywordTok{summary}\NormalTok{(mod1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = NSME ~ TNLA, data = M3_M4)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -110.23  -77.99  -64.62   99.25  184.59 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)   -2.031    151.926  -0.013    0.990
+## TNLA          32.480     35.143   0.924    0.379
+## 
+## Residual standard error: 125.3 on 9 degrees of freedom
+##   (4 observations deleted due to missingness)
+## Multiple R-squared:  0.08669,    Adjusted R-squared:  -0.01479 
+## F-statistic: 0.8542 on 1 and 9 DF,  p-value: 0.3795
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(M3_M4$NMM, M3_M4$TNLA, }\DataTypeTok{type =} \StringTok{"p"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"TN leaf (4 MAT) ~ N Saturated Media (3 MAT)"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Modified Morgans ppm"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Total N leaf analysis ppm"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{lm}\NormalTok{(M3_M4$TNLA~M3_M4$NMM), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{# regression line}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{tomato_markdown_2_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 4MAT soil, 5MAT leaf --> SME not sig correlated. MM is significantly correlated at the 0.05 level. However, linear model is not significant.}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M4_M5$NSME, }\DataTypeTok{y =} \NormalTok{M4_M5$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M4_M5$TNLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M4_M5$NSME and M4_M5$TNLA
+## S = 112, p-value = 0.1292
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4909091
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M4_M5$NMM, }\DataTypeTok{y =} \NormalTok{M4_M5$TNLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M4_M5$NMM and M4_M5$TNLA
+## S = 40, p-value = 0.01592
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.7575758
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(NSME~TNLA, }\DataTypeTok{data=}\NormalTok{M4_M5)}
+
+\KeywordTok{summary}\NormalTok{(mod2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = NSME ~ TNLA, data = M4_M5)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -110.23  -77.99  -64.62   99.25  184.59 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)   -2.031    151.926  -0.013    0.990
+## TNLA          32.480     35.143   0.924    0.379
+## 
+## Residual standard error: 125.3 on 9 degrees of freedom
+##   (4 observations deleted due to missingness)
+## Multiple R-squared:  0.08669,    Adjusted R-squared:  -0.01479 
+## F-statistic: 0.8542 on 1 and 9 DF,  p-value: 0.3795
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(M4_M5$NMM, M4_M5$TNLA, }\DataTypeTok{type =} \StringTok{"p"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"TN leaf (5 MAT) ~ N Saturated Media (4 MAT)"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Modified Morgans ppm"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Total N leaf analysis ppm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{tomato_markdown_2_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\subsection{Regress leaf tissue analysis on SME and MM for
+P}\label{regress-leaf-tissue-analysis-on-sme-and-mm-for-p}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# P}
+\CommentTok{# 1MAT soil, 2MAT leaf --> No sig correlation}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M1_M2$PSME, }\DataTypeTok{y =} \NormalTok{M1_M2$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M1_M2$PLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M1_M2$PSME, y = M1_M2$PLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M1_M2$PSME and M1_M2$PLA
+## S = 735.75, p-value = 0.7073
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## 0.09834052
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M1_M2$PMM, }\DataTypeTok{y =} \NormalTok{M1_M2$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M1_M2$PMM, y = M1_M2$PLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M1_M2$PMM and M1_M2$PLA
+## S = 691.77, p-value = 0.5597
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.1522409
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 2MAT soil, 3MAT leaf --> No sig correlation}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M2_M3$PSME, }\DataTypeTok{y =} \NormalTok{M2_M3$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M2_M3$PLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M2_M3$PSME, y = M2_M3$PLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M2_M3$PSME and M2_M3$PLA
+## S = 490.58, p-value = 0.2962
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.2785557
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M2_M3$PMM, }\DataTypeTok{y =} \NormalTok{M2_M3$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M2_M3$PMM, y = M2_M3$PLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M2_M3$PMM and M2_M3$PLA
+## S = 349.76, p-value = 0.05651
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4856513
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 3MAT soil, 4MAT leaf --> No sig relationship}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M3_M4$PSME, }\DataTypeTok{y =} \NormalTok{M3_M4$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M3_M4$PLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M3_M4$PSME and M3_M4$PLA
+## S = 116, p-value = 0.1456
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4727273
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M3_M4$PMM, }\DataTypeTok{y =} \NormalTok{M3_M4$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M3_M4$PMM and M3_M4$PLA
+## S = 124, p-value = 0.1825
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4363636
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 4MAT soil, 5MAT leaf --> No sig relationship}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M4_M5$PSME, }\DataTypeTok{y =} \NormalTok{M4_M5$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M4_M5$PLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M4_M5$PSME and M4_M5$PLA
+## S = 116, p-value = 0.1456
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4727273
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M4_M5$PMM, }\DataTypeTok{y =} \NormalTok{M4_M5$PLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M4_M5$PMM and M4_M5$PLA
+## S = 124, p-value = 0.1825
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4363636
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# K}
+\CommentTok{# 1MAT soil, 2MAT leaf --> No sig correlation}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M1_M2$KSME, }\DataTypeTok{y =} \NormalTok{M1_M2$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M1_M2$KLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M1_M2$KSME and M1_M2$KLA
+## S = 750, p-value = 0.7584
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## 0.08088235
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M1_M2$KMM, }\DataTypeTok{y =} \NormalTok{M1_M2$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M1_M2$KMM and M1_M2$KLA
+## S = 1020, p-value = 0.3318
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##   rho 
+## -0.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 2MAT soil, 3MAT leaf --> No sig correlation}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M2_M3$KSME, }\DataTypeTok{y =} \NormalTok{M2_M3$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M2_M3$KLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M2_M3$KSME, y = M2_M3$KLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M2_M3$KSME and M2_M3$KLA
+## S = 610.95, p-value = 0.7083
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.1015453
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M2_M3$KMM, }\DataTypeTok{y =} \NormalTok{M2_M3$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.test.default(x = M2_M3$KMM, y = M2_M3$KLA, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M2_M3$KMM and M2_M3$KLA
+## S = 682, p-value = 0.9914
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##          rho 
+## -0.002943341
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 3MAT soil, 4MAT leaf --> No sig relationship}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M3_M4$KSME, }\DataTypeTok{y =} \NormalTok{M3_M4$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M3_M4$KLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M3_M4$KSME and M3_M4$KLA
+## S = 146, p-value = 0.313
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.3363636
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M3_M4$KMM, }\DataTypeTok{y =} \NormalTok{M3_M4$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M3_M4$KMM and M3_M4$KLA
+## S = 176, p-value = 0.5576
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+## rho 
+## 0.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 4MAT soil, 5MAT leaf --> No sig relationship}
+
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M4_M5$KSME, }\DataTypeTok{y =} \NormalTok{M4_M5$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{na.action =} \KeywordTok{na.omit}\NormalTok{(M4_M5$KLA), }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M4_M5$KSME and M4_M5$KLA
+## S = 146, p-value = 0.313
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.3363636
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =} \NormalTok{M4_M5$KMM, }\DataTypeTok{y =} \NormalTok{M4_M5$KLA, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{, }\DataTypeTok{exact =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  M4_M5$KMM and M4_M5$KLA
+## S = 176, p-value = 0.5576
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+## rho 
+## 0.2
+\end{verbatim}
+
+
+\end{document}
